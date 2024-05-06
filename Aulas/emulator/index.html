@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Hello World do 'Patinho Feio' (1971)</title>
+  </head>
+  <body>
+    <h2>Preservação histórica do computador 'Patinho Feio' (de 1971)</h2>
+    <small><i>por Felipe C. da S. Sanches &lt;juca@members.fsf.org&gt;<br/>Maio de 2016</i></small></br>
+
+    <h3>Versão mais recente do emulador</h3>
+    <ul>
+      <li>Essa versão do emulador será constantemente atualizada para mostrar as últimas novidades.</li>
+      <li>Mas justamente por conta disso, provavelmente não conterá todas as explicações.</li>
+      <li>Experimente à vontade.</li>
+      <li>Use: <b>teclas de 1 a 9, 0 - e +</b> para alternar o estado das chaves do painel.</li>
+      <li><b>Clique nos botões verdes</b> para alternar o modo de operação, e para dar partida</li>
+    </ul>
+
+    <h3>Problemas conhecidos</h3>
+    <ul>
+      <li>Essa versão está sem som por enquanto. Vou arrumar isso em breve.</li>
+      <li>Leitura de fita perfurada ainda não funciona</li>
+      <li>O emulador inicia com o programa 'hello world' já carregado na memória, a partir do endereço /006</li>
+      <li>A emulação da teletype funciona. Teste rodando o 'hello world'</li>
+    </ul>
+
+    <h3>Instruções para rodar o 'hello world'</h3>
+    <ul>
+      <li>Em modo 'endereçamento' ajuste as chaves do painel para o endereço /006</li>
+      <li>Pressione o botão 'partida' para salvar o valor das chaves no registrador de endereço.</li>
+      <li>Selecione o modo 'normal'</li>
+      <li>Pressione o botão 'partida' para executar o programa</li>
+      <li>Você verá o texto 'PATINHO FEIO' sendo impresso na folha de papel da teletype (parte de baixo da tela do emulador)</li>
+      <li>Ao término do programa, o computador pára e aguarda novos comandos do operador</li>
+      <li>Se for pressionado 'partida' novamente, o programa irá reiniciar e imprimir na teletype novamente.</li>
+    </ul>
+    <div>
+      <canvas id="canvas-latest" style="width: 50%; height: 50%; display: block; border:1px solid black;"/>
+    </div>
+
+    <h3>O que mais dá pra fazer?</h3>
+    <ul>
+      <li>É possível armazenar dados na memória fazendo primeiro o endereçamento e depois, no modo 'armazenamento' salvar um valor (também a partir das chaves do painel) no enderço escolhido anteriormente.</li>
+      <li>Com isso é possível carregar manualmente programas na memória e depois executá-los</li>
+    </ul>
+
+    <script type="text/javascript" src="es6-promise.js"></script>
+    <script type="text/javascript" src="browserfs.js"></script>
+    <script type="text/javascript" src="loader.js"></script>
+
+    <script type="text/javascript">
+      var emulator = new Emulator(document.querySelector("#canvas-latest"),
+                                  null,
+                                  new JSMESSLoader(JSMESSLoader.driver("patinho"),
+                                                   JSMESSLoader.nativeResolution(600, 600),
+                                                   //JSMESSLoader.aspectRatio(64.0/15.0),
+                                                   JSMESSLoader.emulatorJS("emulators/2016-05-18.mamepatinho.bbde73c215ad02c57e5da86c917bba6e870b82aa.js"),
+                                                   JSMESSLoader.mountFile("patinho.zip",
+                                                                          JSMESSLoader.fetchFile("Punched Tapes",
+                                                                                                 "ROM/patinho-roms.zip")),
+                                                   JSMESSLoader.extraArgs(['-ui_active', '-samples'])
+                                                  )
+                                 );
+      emulator.setScale(1).start({ waitAfterDownloading: true });
+    </script>
+  </body>
+</html>

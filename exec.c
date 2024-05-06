@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include <math.h>
+
 
 int main (void){
      int x;
      scanf("%i", &x);
      double acc = x; // acumulador
-     int add = 0; // somar ou subtrair / verdadeiro our falso;
+     int add = 0; // somar ou subtrair / verdadeiro ou falso;
 
      for(int i = 2, j = 3; i <= 38; i += 2, j += 2){
           double exp = 1;
@@ -22,11 +22,11 @@ int main (void){
           }
 
           if(add){
-               printf("+%iˆ%i/%i! = +%lf/%lf\n", x, i, j, exp, fat);
+               //printf("+%iˆ%i/%i! = +%lf/%lf\n", x, i, j, exp, fat);
                add = 0;
                acc += exp/fat;
           } else {
-               printf("-%iˆ%i/%i! = -%lf/%lf\n", x, i, j, exp, fat);
+               //`printf("-%iˆ%i/%i! = -%lf/%lf\n", x, i, j, exp, fat);
                add = 1;
                acc -= exp/fat;
           }
