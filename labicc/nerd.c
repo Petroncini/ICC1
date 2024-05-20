@@ -27,7 +27,6 @@ int main(void){
 
     be_seated(n, m, rows, cols, bancada);
     arrange(n, m, rows, cols, bancada, &disp);
-    printf("\n");
     printout(n, m, bancada, disp);
 
     
@@ -39,8 +38,9 @@ void be_seated(int n, int m, int rows[20], int cols[20], char bancada[20][20]){
         for (int j = 0; j < m; j++)
         {
             char assento;
-            bancada[i][j] = assento;
+            
             scanf(" %c", &assento);
+            bancada[i][j] = assento;
 
             if(assento == 'c'){
                 //printf("cosplayer on row %d and col %d\n", i, j);
@@ -57,7 +57,6 @@ void arrange(int n, int m, int rows[20], int cols[20], char bancada[20][20], int
         for (int j = 0; j < m; j++)
         {
             if((rows[i] && cols[j]) && bancada[i][j] == 'v'){
-                printf("disponivel em %c, (%d, %d)\n", bancada[i][j], i, j);
                 bancada[i][j] = 'o';
                 *disp += 1;
             } else {
